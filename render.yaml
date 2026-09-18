@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: cloudsport-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: API_SPORTS_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: PREDICTION_PROVIDER
+        value: rules
