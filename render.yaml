@@ -3,12 +3,19 @@ services:
     name: cloudsport-api
     runtime: docker
     dockerfilePath: ./backend/Dockerfile
+    healthCheckPath: /health
     envVars:
       - key: DATABASE_URL
         sync: false
       - key: API_SPORTS_KEY
         sync: false
+      - key: API_SPORTS_BASE_URL
+        value: https://v3.football.api-sports.io
+      - key: API_SPORTS_TIMEOUT_SECONDS
+        value: "10"
       - key: CORS_ORIGINS
         sync: false
       - key: PREDICTION_PROVIDER
         value: rules
+      - key: LOG_LEVEL
+        value: INFO
