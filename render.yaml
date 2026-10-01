@@ -1,8 +1,14 @@
+databases:
+  - name: cloudsport-db
+    plan: free
+
 services:
   - type: web
     name: cloudsport-api
     runtime: docker
+    plan: free
     dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
     healthCheckPath: /health
     envVars:
       - key: DATABASE_URL
@@ -21,7 +27,3 @@ services:
         value: rules
       - key: LOG_LEVEL
         value: INFO
-
-  - type: pgsql
-    name: cloudsport-db
-    ipAllowList: []
