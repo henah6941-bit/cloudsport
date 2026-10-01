@@ -4,10 +4,11 @@ services:
     runtime: docker
     dockerfilePath: ./backend/Dockerfile
     healthCheckPath: /health
-    preDeployCommand: cd backend && alembic upgrade head
     envVars:
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: cloudsport-db
+          property: connectionString
       - key: API_SPORTS_KEY
         sync: false
       - key: API_SPORTS_BASE_URL
@@ -20,3 +21,7 @@ services:
         value: rules
       - key: LOG_LEVEL
         value: INFO
+
+  - type: pgsql
+    name: cloudsport-db
+    ipAllowList: []
