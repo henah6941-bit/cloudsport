@@ -4,6 +4,7 @@ services:
     runtime: docker
     dockerfilePath: ./backend/Dockerfile
     healthCheckPath: /health
+    preDeployCommand: cd backend && alembic upgrade head
     envVars:
       - key: DATABASE_URL
         sync: false
